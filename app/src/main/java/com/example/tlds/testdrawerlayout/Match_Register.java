@@ -19,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Match_Register extends AppCompatActivity {
 
@@ -27,11 +28,13 @@ public class Match_Register extends AppCompatActivity {
     private TextView txtFieldName;
     private Button btnMatchRegister;
 
+    private HashMap<String, String> map = new HashMap<>();
+
     private ArrayList<String> listFieldName = new ArrayList<String>();
     private ArrayAdapter<String>adapter;
 
     private String Username, user_id;
-    private String fieldName, price, maxPlayers;
+    private String fieldID, price, maxPlayers;
     private Context context;
 
     @Override
@@ -54,8 +57,22 @@ public class Match_Register extends AppCompatActivity {
             }
         });
 
-        arrayAdapterConnect();
+        //arrayAdapterConnect();
 
+        clickEvents();
+    }
+
+    private void clickEvents() {
+        btnMatchRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fieldID = map.get(txtFieldName.getText().toString());
+                price = editPrice.getText().toString();
+                maxPlayers = editMaxPlayes.getText().toString();
+
+
+            }
+        });
     }
 
     private void arrayAdapterConnect(){
@@ -86,6 +103,8 @@ public class Match_Register extends AppCompatActivity {
         editMaxPlayes = (EditText)findViewById(R.id.editMaxPlayers);
 
         txtFieldName = (TextView)findViewById(R.id.txtFieldName);
+        editPrice = (EditText)findViewById(R.id.editPrice);
+        editMaxPlayes = (EditText)findViewById(R.id.editMaxPlayers);
 
         btnMatchRegister = (Button)findViewById(R.id.btnRegisterMatch);
     }
@@ -127,11 +146,14 @@ public class Match_Register extends AppCompatActivity {
                     }
                     case 2: {
                             for(int i=0; i<array.length(); i++){
-                            JSONObject profile = array.getJSONObject(i);
+                                JSONObject profile = array.getJSONObject(i);
 
-                            listFieldName.add(profile.getString("field_name").toString());
-                            Log.e("---ListFieldName--: ", listFieldName.get(i) + i);
-                        }
+                                map.put(profile.getString("field_name"), profile.getString("field_id"));
+
+                                listFieldName.add(profile.getString("field_name").toString());
+                                Log.e("---ListFieldName--: ", listFieldName.get(i) + i);
+                            }
+                        arrayAdapterConnect();
                     }
                 }
 
