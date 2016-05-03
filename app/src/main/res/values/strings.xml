@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">TestDrawerLayout</string>
+    <string name="action_settings">Settings</string>
+
+    <!--<string name="action_settings">Settings</string>-->
+    <string name="action_search">Search</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="nav_item_home">Matchs List</string>
+    <string name="nav_item_profile">Profile</string>
+    <string name="nav_item_logout">Log out</string>
+
+    <!-- navigation drawer item labels  -->
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_home</item>
+        <item>@string/nav_item_profile</item>
+        <item>@string/nav_item_logout</item>
+    </string-array>
+
+    <string name="title_logout">Log out</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_home">Matchs List</string>
+
+    <string name="login_success">Login Success</string>
+    <string name="login_fail">Login failed</string>
+
+    <string name="register">Register</string>
+    <string name="enter_nick">Please enter Username</string>
+    <string name="enter_pass">Please enter Password</string>
+    <string name="enter_repass">Please enter Password Confirm</string>
+    <string name="pass_not_match">Password does not match</string>
+    <string name="wait">Wait for a second!</string>
+    <string name="register_success">Register Successful</string>
+    <string name="register_fail">Register failed</string>
+    <string name="login">Login</string>
+
+</resources>
