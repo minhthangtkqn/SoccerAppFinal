@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public class CustomListAdapter extends BaseAdapter {
         return position;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.list_view_item, null);
@@ -47,6 +48,13 @@ public class CustomListAdapter extends BaseAdapter {
             holder.field_name = (TextView) convertView.findViewById(R.id.txt_Field);
             holder.maximum_players = (TextView) convertView.findViewById(R.id.txt_Max);
             holder.price = (TextView) convertView.findViewById(R.id.txt_Price);
+            holder.btnJoin = (Button) convertView.findViewById(R.id.btnJoin);
+            holder.btnJoin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.e("Join",listData.get(position).getField_name());
+                }
+            });
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -74,5 +82,6 @@ public class CustomListAdapter extends BaseAdapter {
         TextView field_name;
         TextView maximum_players;
         TextView price;
+        Button btnJoin;
     }
 }

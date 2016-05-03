@@ -26,7 +26,7 @@ public class Var {
 
     public static final String KEY_LOGIN = "login";
     public static final String KEY_REGISTER = "register";
-    public static final String KEY_ADD = "add";
+    public static final String KEY_ADD_MATCH = "add";
 
     public static final int METHOD_LOGIN = 1;
     public static final int METHOD_REGISTER = 2;

@@ -157,7 +157,7 @@ public class Matchs_View extends AppCompatActivity implements FragmentDrawer.Fra
                 for(int i=0; i<array.length(); i++){
                     JSONObject match = array.getJSONObject(i);
 
-                    Match tran = new Match(match.getString("field_id").toString(), match.getString("maximum_players").toString(), match.getString("price").toString());
+                    Match tran = new Match(match.getString("field_name").toString(), match.getString("maximum_players").toString(), match.getString("price").toString());
                     matches.add(tran);
                     listView.setAdapter(new CustomListAdapter(Matchs_View.this, matches));
                 }

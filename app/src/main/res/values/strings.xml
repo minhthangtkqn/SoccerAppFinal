@@ -34,5 +34,8 @@
     <string name="register_success">Register Successful</string>
     <string name="register_fail">Register failed</string>
     <string name="login">Login</string>
+    <string name="add_match_success">Create Match Successful</string>
+    <string name="add_match_fail">Create Match Failed</string>
+
 
 </resources>

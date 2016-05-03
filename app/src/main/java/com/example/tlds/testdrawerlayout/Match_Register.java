@@ -1,5 +1,6 @@
 package com.example.tlds.testdrawerlayout;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -21,7 +22,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Match_Register extends AppCompatActivity {
+public class Match_Register extends AppCompatActivity implements LoadJson.OnFinishLoadJSonListener {
+
+    private LoadJson loadJson;
 
     private Spinner spinnerFieldName;
     private EditText editPrice, editMaxPlayes;
@@ -37,6 +40,8 @@ public class Match_Register extends AppCompatActivity {
     private String fieldID, price, maxPlayers;
     private Context context;
 
+    private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +50,12 @@ public class Match_Register extends AppCompatActivity {
         context = this;
 
         connectToView();
+
+        loadJson = new LoadJson();
+        loadJson.setOnFinishLoadJSonListener(this);
+
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage(context.getResources().getString(R.string.wait));
 
         getUserFromCallerActivity();
 
@@ -56,9 +67,7 @@ public class Match_Register extends AppCompatActivity {
                 new getUserIDAndFieldName().execute("http://minhthangtkqn-001-site1.1tempurl.com/JSON_fields.php");
             }
         });
-
-        //arrayAdapterConnect();
-
+        arrayAdapterConnect();
         clickEvents();
     }
 
@@ -66,11 +75,19 @@ public class Match_Register extends AppCompatActivity {
         btnMatchRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //user_id
                 fieldID = map.get(txtFieldName.getText().toString());
-                price = editPrice.getText().toString();
-                maxPlayers = editMaxPlayes.getText().toString();
+                price = editPrice.getText().toString().trim();
+                maxPlayers = editMaxPlayes.getText().toString().trim();
 
+                HashMap<String, String>data = new HashMap<String, String>();
+                data.put("host_id", user_id);
+                data.put("field_id", fieldID);
+                data.put("price", price);
+                data.put("maximum_players", maxPlayers);
 
+                loadJson.sendDataToServer(Var.METHOD_ADD_MATCH, data);
+                progressDialog.show();
             }
         });
     }
@@ -81,6 +98,28 @@ public class Match_Register extends AppCompatActivity {
         spinnerFieldName.setAdapter(adapter);
         spinnerFieldName.setSelection(0);
         spinnerFieldName.setOnItemSelectedListener(new MyProcessEvent());
+    }
+
+    @Override
+    public void finishLoadJSon(String error, String json) {
+        if (progressDialog.isShowing()) {
+            progressDialog.hide();
+        }
+        try {
+            if (json != null) {
+                JSONObject jsonObject = new JSONObject(json);
+                if (jsonObject.getBoolean(Var.KEY_ADD_MATCH)) {
+                    Var.showToast(context, context.getResources().getString(R.string.add_match_success));
+                    finish();
+                } else {
+                    Var.showToast(context, context.getResources().getString(R.string.add_match_fail));
+                }
+            } else {
+                Var.showToast(context, error);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     class MyProcessEvent implements AdapterView.OnItemSelectedListener {
@@ -153,7 +192,8 @@ public class Match_Register extends AppCompatActivity {
                                 listFieldName.add(profile.getString("field_name").toString());
                                 Log.e("---ListFieldName--: ", listFieldName.get(i) + i);
                             }
-                        arrayAdapterConnect();
+
+                        adapter.notifyDataSetChanged();
                     }
                 }
 

@@ -45,7 +45,6 @@ public class Sign_Up extends AppCompatActivity implements View.OnClickListener, 
         editUser = (EditText)findViewById(R.id.editUser);
         editCFPass = (EditText)findViewById(R.id.editCfpass);
         editPass = (EditText)findViewById(R.id.editPass);
-//        editEmail = (EditText)findViewById(R.id.editEmail);
 
         findViewById(R.id.btnRegister).setOnClickListener(this);
     }
@@ -117,7 +116,6 @@ public class Sign_Up extends AppCompatActivity implements View.OnClickListener, 
 
     private void reset() {
         editUser.setText("");
-//        editEmail.setText("");
         editPass.setText("");
         editCFPass.setText("");
         editUser.requestFocus();
