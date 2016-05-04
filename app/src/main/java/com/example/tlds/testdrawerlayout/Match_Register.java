@@ -75,7 +75,7 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
         btnMatchRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //user_id
+
                 fieldID = map.get(txtFieldName.getText().toString());
                 price = editPrice.getText().toString().trim();
                 maxPlayers = editMaxPlayes.getText().toString().trim();
@@ -128,7 +128,6 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
     }
 
 
-
     class MyProcessEvent implements AdapterView.OnItemSelectedListener {
 
         @Override
@@ -160,6 +159,7 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
         Intent destination = getIntent();
         Bundle pack = destination.getBundleExtra(Var.KEY_BUNDLE_USER);
         Username = pack.getString(Var.KEY_USER);
+//        user_id = pack.getString(Var.KEY_USER_ID);
     }
 
     class getUserIDAndFieldName extends AsyncTask<String, Integer, String> {

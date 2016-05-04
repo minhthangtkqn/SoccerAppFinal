@@ -11,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -27,7 +26,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     private String Username, userID;
 
     private TextView txtUsername, txtEmail, txtPhone;
-    private Button btnMatchList, btnMyMatch;
     private ProgressDialog progressDialog;
 
 
@@ -51,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         });
 
         //set up action when click button
-        ClickEvents();
+//        ClickEvents();
 
         //set up drawer layout
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -75,19 +73,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     private void ClickEvents(){
         //set up action when click button
-        btnMatchList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openMatchsList();
-            }
-        });
 
-        btnMyMatch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 
     public void openProfile() {
@@ -113,9 +99,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         txtUsername = (TextView)findViewById(R.id.txtUsername);
         txtEmail = (TextView)findViewById(R.id.txtEmail);
         txtPhone = (TextView)findViewById(R.id.txtPhone);
-
-        btnMatchList = (Button)findViewById(R.id.btnMatchList);
-        btnMyMatch = (Button)findViewById(R.id.btnMyMatch);
     }
 
     @Override

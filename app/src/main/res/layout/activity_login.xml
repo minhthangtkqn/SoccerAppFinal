@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".LoginActivity"
-    android:background="#5fde29">
+    android:background="@drawable/soccer_net_edited">
 
     <TableRow
         android:layout_width="match_parent"
@@ -50,8 +50,8 @@
             android:text="Username"
             android:id="@+id/textView14"
             android:textSize="17dp"
-            android:textColor="#000000"
-            android:textStyle="italic" />
+            android:textColor="#ffffff"
+            android:textStyle="bold|italic" />
     </TableRow>
 
     <TableRow
@@ -84,8 +84,8 @@
             android:text="Password"
             android:id="@+id/textView15"
             android:textSize="17dp"
-            android:textColor="#000000"
-            android:textStyle="italic" />
+            android:textColor="#ffffff"
+            android:textStyle="bold|italic" />
     </TableRow>
 
     <TableRow
@@ -127,7 +127,9 @@
             android:layout_height="wrap_content"
             android:text="Remember me"
             android:id="@+id/rememberMe"
-            android:checked="false" />
+            android:checked="false"
+            android:textColor="#ffffff"
+            android:textStyle="bold" />
     </TableRow>
 
     <TableRow
@@ -143,7 +145,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="LOGIN"
-            android:id="@+id/btnLogin" />
+            android:id="@+id/btnLogin"
+            android:background="#3691e6"
+            android:textSize="25dp"
+            android:textStyle="bold|italic" />
     </TableRow>
 
     <TableRow
@@ -162,7 +167,8 @@
             android:text="Don&apos;t have an account? Create one"
             android:id="@+id/signUp"
             android:textStyle="bold"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:textColor="#ffffff" />
     </TableRow>
 
 </RelativeLayout>

@@ -47,10 +47,6 @@ public class LoginActivity extends AppCompatActivity {
 
     Context context;
 
-//    public static final String KEY_USER = "user";
-//    public static final String KEY_PASSWORD = "password";
-//    public static final String KEY_REMEMBER_ME = "remember me";
-
     public void login(){
         progressDialog.show();
         runOnUiThread(new Runnable() {
@@ -120,7 +116,10 @@ public class LoginActivity extends AppCompatActivity {
     private void connectView() {
         btnLogin = (Button)findViewById(R.id.btnLogin);
         btnShowPassword = (ImageView)findViewById(R.id.btnShowPassword);
+
         inputPassword = (EditText)findViewById(R.id.editPassword);
+        inputPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
         inputUserName = (EditText)findViewById(R.id.editUserName);
         signUp = (TextView)findViewById(R.id.signUp);
         rememberMe = (CheckBox)findViewById(R.id.rememberMe);
@@ -243,12 +242,10 @@ public class LoginActivity extends AppCompatActivity {
         loadPreferences();
     }
 
+    //save Username and Password
     public void savingPreferences(){
         SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-
-//        String user = inputUserName.getText().toString();
-//        String pass = inputPassword.getText().toString();
 
         UnameValue = inputUserName.getText().toString();
         PasswordValue = inputPassword.getText().toString();
@@ -270,12 +267,12 @@ public class LoginActivity extends AppCompatActivity {
         editor.commit();
     }
 
+//    Load Username and Password
     private void loadPreferences() {
 
         SharedPreferences settings = getSharedPreferences("data", Context.MODE_PRIVATE);
 
-        // Get value
-
+        // Get Username and Password
         UnameValue = settings.getString(Var.KEY_USER, DefaultUnameValue);
         PasswordValue = settings.getString(Var.KEY_PASS, DefaultPasswordValue);
         inputUserName.setText(UnameValue);
@@ -288,10 +285,6 @@ public class LoginActivity extends AppCompatActivity {
         {
             rememberMe.setChecked(true);
         }
-
-//        inputUserName.setText("");
-//        inputPassword.setText("");
-//        inputUserName.requestFocus();
 
         System.out.println("onResume load name: " + UnameValue);
         System.out.println("onResume load password: " + PasswordValue);

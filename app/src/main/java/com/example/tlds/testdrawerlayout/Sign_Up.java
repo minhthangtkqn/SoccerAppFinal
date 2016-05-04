@@ -6,22 +6,27 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 
-public class Sign_Up extends AppCompatActivity implements View.OnClickListener, LoadJson.OnFinishLoadJSonListener {
+public class Sign_Up extends AppCompatActivity implements LoadJson.OnFinishLoadJSonListener {
 
     private Button btnRegister;
     private EditText editUser, editEmail, editPass, editCFPass;
     private Context context;
     private LoadJson loadJson;
     private ProgressDialog progressDialog;
+
+    private ImageView showPass, showCFPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +39,47 @@ public class Sign_Up extends AppCompatActivity implements View.OnClickListener, 
 
         connectView();
 
+        clickEvents();
+
         loadJson = new LoadJson();
         loadJson.setOnFinishLoadJSonListener(this);
         progressDialog = new ProgressDialog(context);
         progressDialog.setMessage(context.getResources().getString(R.string.wait));
 
+
+    }
+
+    private void clickEvents() {
+        showPass.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        editPass.setInputType(editPass.getInputType() ^ InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        break;
+                }
+                return true;
+            }
+        });
+
+        showCFPass.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        editCFPass.setInputType(editCFPass.getInputType() ^ InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        break;
+                }
+                return true;
+            }
+        });
+
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                register();
+            }
+        });
     }
 
     private void connectView() {
@@ -46,7 +87,13 @@ public class Sign_Up extends AppCompatActivity implements View.OnClickListener, 
         editCFPass = (EditText)findViewById(R.id.editCfpass);
         editPass = (EditText)findViewById(R.id.editPass);
 
-        findViewById(R.id.btnRegister).setOnClickListener(this);
+        editPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        editCFPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
+        showPass = (ImageView)findViewById(R.id.showPass);
+        showCFPass = (ImageView)findViewById(R.id.showCfPass);
+
+        btnRegister = (Button)findViewById(R.id.btnRegister);
     }
 
     private void setupToolbar() {
@@ -56,21 +103,6 @@ public class Sign_Up extends AppCompatActivity implements View.OnClickListener, 
             if (getSupportActionBar() != null) {
                 getSupportActionBar().setTitle(R.string.register);
             }
-        }
-    }
-
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-//            case R.id.btn_reset:
-//                reset();
-//                break;
-            case R.id.btnRegister:
-                register();
-                break;
-            default:
-                break;
         }
     }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,44 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.tlds.testwebservice.Sign_Up"
-    android:background="#91e176">
-
-    <TextView
-        android:layout_width="198dp"
-        android:layout_height="39dp"
-        android:text="SIGN UP"
-        android:id="@+id/textView"
-        android:layout_x="100dp"
-        android:layout_y="20dp"
-        android:textSize="30dp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Username"
-        android:id="@+id/textView2"
-        android:layout_x="3dp"
-        android:layout_y="100dp"
-        android:textSize="16dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Password"
-        android:id="@+id/textView3"
-        android:layout_x="3dp"
-        android:layout_y="150dp"
-        android:textSize="16dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Confirm Password"
-        android:id="@+id/textView4"
-        android:layout_x="3dp"
-        android:layout_y="200dp"
-        android:textSize="16dp" />
+    android:background="@drawable/soccer_net_edited">
 
     <!--<TextView-->
         <!--android:layout_width="wrap_content"-->
@@ -56,30 +19,6 @@
         <!--android:id="@+id/textView5"-->
         <!--android:textSize="16dp" />-->
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editUser"
-        android:layout_x="150dp"
-        android:layout_y="90dp"
-        android:hint="Username" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editPass"
-        android:layout_x="150dp"
-        android:layout_y="140dp"
-        android:hint="Password" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editCfpass"
-        android:layout_x="150dp"
-        android:layout_y="190dp"
-        android:hint="Confirm Password" />
-
     <!--<EditText-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
@@ -88,13 +27,112 @@
         <!--android:layout_y="240dp"-->
         <!--android:hint="Email" />-->
 
-    <Button
-        android:layout_width="117dp"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
-        android:id="@+id/btnRegister"
-        android:layout_x="120dp"
-        android:layout_y="460dp"
-        android:background="#e99439" />
+        android:text="SIGN UP"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="28dp"
+        android:textStyle="bold|italic"
+        android:layout_marginTop="50dp" />
 
-</AbsoluteLayout>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tableRow11"
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="USERNAME"
+            android:id="@+id/textView2"
+            android:textColor="#ffffff"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editUser"
+            android:layout_weight="1" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tableRow11"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tableRow12"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="PASSWORD"
+            android:id="@+id/textView3"
+            android:textColor="#ffffff"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editPass"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/showPass"
+            android:background="@drawable/eye_icon" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tableRow12"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tableRow13"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="CONFIRM PASS"
+            android:id="@+id/textView4"
+            android:textColor="#ffffff"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editCfpass"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/showCfPass"
+            android:background="@drawable/eye_icon" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tableRow13"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="REGISTER"
+            android:id="@+id/btnRegister"
+            android:textStyle="bold|italic"
+            android:textSize="25dp"
+            android:background="#3691e6" />
+    </TableRow>
+</RelativeLayout>

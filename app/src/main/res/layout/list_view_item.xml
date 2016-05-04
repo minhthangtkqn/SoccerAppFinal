@@ -43,7 +43,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/txt_Date" />
+        android:layout_alignBottom="@+id/txt_Date"
+        android:background="@drawable/rectangle_tool_icon" />
 
     <TextView
         android:layout_width="wrap_content"
