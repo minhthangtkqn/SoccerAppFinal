@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     private FragmentDrawer drawerFragment;
     private Context context;
 
-    private String Username;
+    private String Username, userID;
 
     private TextView txtUsername, txtEmail, txtPhone;
     private Button btnMatchList, btnMyMatch;
@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         Intent destination = getIntent();
         Bundle pack = destination.getBundleExtra(Var.KEY_BUNDLE_USER);
         Username = pack.getString(Var.KEY_USER);
+        userID = pack.getString(Var.KEY_USER_ID);
     }
 
     private void ClickEvents(){
@@ -93,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         Intent intent = new Intent(context, MainActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString(Var.KEY_USER, txtUsername.getText().toString());
+        bundle.putString(Var.KEY_USER_ID, userID);
         intent.putExtra(Var.KEY_BUNDLE_USER, bundle);
         startActivity(intent);
     }
@@ -101,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         Intent intent = new Intent(context, Matchs_View.class);
         Bundle bundle = new Bundle();
         bundle.putString(Var.KEY_USER, txtUsername.getText().toString());
+        bundle.putString(Var.KEY_USER_ID, userID);
         intent.putExtra(Var.KEY_BUNDLE_USER, bundle);
         startActivity(intent);
     }

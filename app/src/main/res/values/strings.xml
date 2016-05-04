@@ -36,7 +36,7 @@
     <string name="login">Login</string>
     <string name="add_match_success">Create Match Successful</string>
     <string name="add_match_fail">Create Match Failed</string>
-    <string name="add_join_success">Create Join Successful</string>
-    <string name="add_join_fail">Create Join Failed</string>
+    <string name="add_join_success">Joining Successful</string>
+    <string name="add_join_fail">You have joined this match.</string>
 
 </resources>

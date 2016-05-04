@@ -5,14 +5,16 @@ package com.example.tlds.testdrawerlayout;
  */
 public class Match {
     private String field_name;
-    private String maximum_players, price, date, match_id;
+    private String maximum_players, price, date, match_id, number_players, user_id;
 
-    public Match(String field_name, String maximum_players, String price, String date, String match_id){
+    public Match(String field_name, String maximum_players, String price, String date, String match_id, String number_players, String user_id){
         this.field_name = field_name;
         this.maximum_players = maximum_players;
         this.price = price;
         this.date = date;
         this.match_id = match_id;
+        this.number_players = number_players;
+        this.user_id = user_id;
     }
 
     public String getMaximum_players() {
@@ -53,5 +55,21 @@ public class Match {
 
     public void setMatch_id(String match_id) {
         this.match_id = match_id;
+    }
+
+    public String getNumber_players() {
+        return number_players;
+    }
+
+    public void setNumber_players(String number_players) {
+        this.number_players = number_players;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 }

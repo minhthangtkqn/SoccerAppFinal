@@ -17,6 +17,7 @@ public class Var {
     public static final String KEY_BUNDLE_USER = "user package";
 
     public static final String KEY_USER = "username";
+    public static final String KEY_USER_ID = "user_id";
     public static final String KEY_PASS = "pass";
 
     public static final String KEY_EMAIL = "id";

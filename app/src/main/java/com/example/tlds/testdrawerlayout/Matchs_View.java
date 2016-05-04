@@ -26,7 +26,7 @@ public class Matchs_View extends AppCompatActivity implements FragmentDrawer.Fra
     private FragmentDrawer drawerFragment;
     private Context context;
 
-    private String Username;
+    private String Username, user_id;
     private ListView listView;
     private List<Match> matches = new ArrayList<Match>();
     private Button btnCreateMatch;
@@ -42,6 +42,7 @@ public class Matchs_View extends AppCompatActivity implements FragmentDrawer.Fra
         Intent caller = getIntent();
         Bundle pack = caller.getBundleExtra(Var.KEY_BUNDLE_USER);
         Username = pack.getString(Var.KEY_USER);
+        user_id = pack.getString(Var.KEY_USER_ID);
 
         //show matchs list
         runOnUiThread(new Runnable() {
@@ -162,7 +163,9 @@ public class Matchs_View extends AppCompatActivity implements FragmentDrawer.Fra
                             match.getString("maximum_players").toString(),
                             match.getString("price").toString(),
                             match.getString("start_time").toString(),
-                            match.getString("match_id").toString());
+                            match.getString("match_id").toString(),
+                            match.getString("number_players").toString(),
+                            user_id);
                     matches.add(tran);
                     listView.setAdapter(new CustomListAdapter(Matchs_View.this, matches));
                 }

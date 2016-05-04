@@ -113,7 +113,7 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
                     Var.showToast(context, context.getResources().getString(R.string.add_match_success));
 
                     new getMatchID().execute("http://minhthangtkqn-001-site1.1tempurl.com/matches.php");
-                    new SendJoin(user_id, match_id);
+
 
                     finish();
                 } else {
@@ -222,10 +222,14 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
                     JSONObject match = array.getJSONObject(i);
 
                     match_id = match.getString("match_id");
+
+                    Log.e("++++ Match ID: ", match_id);
+                    Log.e("user_id: ", user_id);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            new SendJoin(user_id, match_id);
         }
     }
 
@@ -233,13 +237,13 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
 
         public SendJoin(String user, String match){
 
-
             LoadJson loadJsonJoin = new LoadJson();
             loadJsonJoin.setOnFinishLoadJSonListener(this);
 
             HashMap<String, String> dataJoin = new HashMap<>();
             dataJoin.put("user_id", user);
             dataJoin.put("match_id", match);
+
             loadJsonJoin.sendDataToServer(Var.METHOD_JOIN_MATCH, dataJoin);
             progressDialog.show();
         }

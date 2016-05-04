@@ -35,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
     Toast successLogin, failLogin;
     CheckBox rememberMe;
 
+    String userID;
+
     private final String DefaultUnameValue = "";
     private String UnameValue;
 
@@ -187,6 +189,7 @@ public class LoginActivity extends AppCompatActivity {
                     {
                         if(progressDialog.isShowing())
                             progressDialog.hide();
+                        userID = profile.getString("user_id").toString();
                         successLogin.show();
                         savingPreferences();
                         openProfileActivity();
@@ -208,6 +211,7 @@ public class LoginActivity extends AppCompatActivity {
             Intent matches = new Intent(LoginActivity.this, MainActivity.class);
             Bundle userPack = new Bundle();
             userPack.putString(Var.KEY_USER, inputUserName.getText().toString());
+            userPack.putString(Var.KEY_USER_ID, userID);
             matches.putExtra(Var.KEY_BUNDLE_USER, userPack);
             startActivity(matches);
         }
