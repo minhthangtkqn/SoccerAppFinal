@@ -32,7 +32,7 @@ public class Var {
     public static final int METHOD_REGISTER = 2;
     public static final int METHOD_GET_MATCH = 3;
     public static final int METHOD_ADD_MATCH = 4;
-
+    public static final int METHOD_JOIN_MATCH = 5;
 
     public static void showToast(Context context, String sms) {
         Toast.makeText(context, sms, Toast.LENGTH_SHORT).show();

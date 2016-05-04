@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,99 +8,161 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".LoginActivity"
-    android:background="#1d92d5">
+    android:background="#a2e038">
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <TableRow
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/imageBall"
-        android:layout_x="20dp"
-        android:layout_y="5dp"
-        android:background="@drawable/bongden" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tableRow5"
+        android:layout_marginTop="20dp">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/btnLogin"
-        android:layout_x="120dp"
-        android:layout_y="380dp"
-        android:background="#c77241"
-        android:textColor="#ffffff" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Show Password"
-        android:id="@+id/btnShowPassword"
-        android:layout_x="105dp"
-        android:layout_y="310dp"
-        android:background="#c77241"
-        android:textColor="#ffffff" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:background="@drawable/bongden" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="No account yet? Create one"
-        android:id="@+id/signUp"
-        android:layout_x="50dp"
-        android:layout_y="450dp"
-        android:textSize="20dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ONLINE SOCCER NETWORK"
+            android:id="@+id/textView13"
+            android:textAlignment="center"
+            android:textColor="#bd0d0d"
+            android:textSize="28dp"
+            android:textStyle="bold|italic" />
+    </TableRow>
 
-    <EditText
-        android:layout_width="300dp"
+    <TableRow
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editPassword"
-        android:layout_x="30dp"
-        android:layout_y="200dp"
-        android:password="true"/>
+        android:layout_below="@+id/tableRow5"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/row2"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="30dp">
 
-    <EditText
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/editUserName"
-        android:layout_x="30dp"
-        android:layout_y="115dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:id="@+id/textView14"
+            android:textSize="17dp"
+            android:textColor="#000000"
+            android:textStyle="italic" />
+    </TableRow>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <TableRow
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="User Name"
-        android:id="@+id/textView2"
-        android:layout_x="30dp"
-        android:layout_y="85dp"
-        android:textSize="20dp"
-        android:textColor="#ffffff" />
+        android:layout_below="@+id/row2"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tableRow6"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="false">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Password"
-        android:id="@+id/textView3"
-        android:layout_x="30dp"
-        android:layout_y="170dp"
-        android:textSize="20dp"
-        android:textColor="#ffffff" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editUserName" />
+    </TableRow>
 
-    <CheckBox
-        android:layout_width="wrap_content"
+    <TableRow
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Remember me"
-        android:id="@+id/rememberMe"
-        android:layout_x="90dp"
-        android:layout_y="260dp"
-        android:checked="false"
-        android:textSize="18dp" />
+        android:layout_below="@+id/tableRow6"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/tableRow7"
+        android:layout_marginTop="20dp">
 
-    <TextView
-        android:layout_width="231dp"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:id="@+id/textView15"
+            android:textSize="17dp"
+            android:textColor="#000000"
+            android:textStyle="italic" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="online soccer network"
-        android:id="@+id/textView"
-        android:layout_x="100dp"
-        android:layout_y="5dp"
-        android:textSize="30dp"
-        android:textAllCaps="true"
-        android:gravity="center_horizontal"
-        android:textColor="#c3123b"
-        android:textStyle="bold|italic" />
-</AbsoluteLayout>
+        android:layout_alignTop="@+id/tableRow7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/tableRow8"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentBottom="false"
+        android:layout_marginTop="20dp">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editPassword"
+            android:layout_weight="0.8" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnShowPassword"
+            android:background="@drawable/eye_icon"
+            android:layout_marginTop="5dp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tableRow8"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/tableRow9"
+        android:layout_marginTop="20dp">
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Remember me"
+            android:id="@+id/rememberMe"
+            android:checked="false" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tableRow9"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/tableRow10"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LOGIN"
+            android:id="@+id/btnLogin" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tableRow10"
+        android:layout_alignRight="@+id/tableRow10"
+        android:layout_alignEnd="@+id/tableRow10"
+        android:id="@+id/row"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Don&apos;t have an account? Create one"
+            android:id="@+id/signUp"
+            android:textStyle="bold"
+            android:textSize="16dp" />
+    </TableRow>
+
+</RelativeLayout>

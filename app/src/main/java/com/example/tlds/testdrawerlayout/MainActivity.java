@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         context = this;
         connectToView();
 
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Soccer Social");
 
         drawerFragment = (FragmentDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);

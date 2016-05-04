@@ -48,11 +48,14 @@ public class CustomListAdapter extends BaseAdapter {
             holder.field_name = (TextView) convertView.findViewById(R.id.txt_Field);
             holder.maximum_players = (TextView) convertView.findViewById(R.id.txt_Max);
             holder.price = (TextView) convertView.findViewById(R.id.txt_Price);
+            holder.date = (TextView) convertView.findViewById(R.id.txt_Date);
+
             holder.btnJoin = (Button) convertView.findViewById(R.id.btnJoin);
             holder.btnJoin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.e("Join",listData.get(position).getField_name());
+
                 }
             });
             convertView.setTag(holder);
@@ -60,10 +63,11 @@ public class CustomListAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Match country = this.listData.get(position);
-        holder.field_name.setText("San: " + country.getField_name());
-        holder.maximum_players.setText("Maximum players: " + country.getMaximum_players());
-        holder.price.setText("Price: " + country.getPrice());
+        Match match = this.listData.get(position);
+        holder.field_name.setText("San: " + match.getField_name());
+        holder.maximum_players.setText("Maximum players: " + match.getMaximum_players());
+        holder.price.setText("Price: " + match.getPrice());
+        holder.date.setText("Date: " + match.getDate());
 
         return convertView;
     }
@@ -82,6 +86,8 @@ public class CustomListAdapter extends BaseAdapter {
         TextView field_name;
         TextView maximum_players;
         TextView price;
+        TextView date;
+
         Button btnJoin;
     }
 }

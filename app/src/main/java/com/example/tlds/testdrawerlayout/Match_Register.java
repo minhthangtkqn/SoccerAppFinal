@@ -36,7 +36,7 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
     private ArrayList<String> listFieldName = new ArrayList<String>();
     private ArrayAdapter<String>adapter;
 
-    private String Username, user_id;
+    private String Username, user_id, match_id;
     private String fieldID, price, maxPlayers;
     private Context context;
 
@@ -109,7 +109,12 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
             if (json != null) {
                 JSONObject jsonObject = new JSONObject(json);
                 if (jsonObject.getBoolean(Var.KEY_ADD_MATCH)) {
+                    //tao tran dau thanh cong
                     Var.showToast(context, context.getResources().getString(R.string.add_match_success));
+
+                    new getMatchID().execute("http://minhthangtkqn-001-site1.1tempurl.com/matches.php");
+                    new SendJoin(user_id, match_id);
+
                     finish();
                 } else {
                     Var.showToast(context, context.getResources().getString(R.string.add_match_fail));
@@ -121,6 +126,8 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
             e.printStackTrace();
         }
     }
+
+
 
     class MyProcessEvent implements AdapterView.OnItemSelectedListener {
 
@@ -186,17 +193,76 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
                     case 2: {
                             for(int i=0; i<array.length(); i++){
                                 JSONObject profile = array.getJSONObject(i);
-
                                 map.put(profile.getString("field_name"), profile.getString("field_id"));
-
                                 listFieldName.add(profile.getString("field_name").toString());
                                 Log.e("---ListFieldName--: ", listFieldName.get(i) + i);
                             }
-
                         adapter.notifyDataSetChanged();
                     }
                 }
 
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    class getMatchID extends AsyncTask<String, Integer, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            return LoginActivity.readContentFromURL(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+                JSONArray array = new JSONArray(s);
+                for(int i=0; i<array.length(); i++){
+                    JSONObject match = array.getJSONObject(i);
+
+                    match_id = match.getString("match_id");
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    class SendJoin implements LoadJson.OnFinishLoadJSonListener{
+
+        public SendJoin(String user, String match){
+
+
+            LoadJson loadJsonJoin = new LoadJson();
+            loadJsonJoin.setOnFinishLoadJSonListener(this);
+
+            HashMap<String, String> dataJoin = new HashMap<>();
+            dataJoin.put("user_id", user);
+            dataJoin.put("match_id", match);
+            loadJsonJoin.sendDataToServer(Var.METHOD_JOIN_MATCH, dataJoin);
+            progressDialog.show();
+        }
+
+        @Override
+        public void finishLoadJSon(String error, String json) {
+            if (progressDialog.isShowing()) {
+                progressDialog.hide();
+            }
+            try {
+                if (json != null) {
+                    JSONObject jsonObject = new JSONObject(json);
+                    if (jsonObject.getBoolean(Var.KEY_ADD_MATCH)) {
+                        //tao join thanh cong
+                        Var.showToast(context, context.getResources().getString(R.string.add_join_success));
+
+                        finish();
+                    } else {
+                        Var.showToast(context, context.getResources().getString(R.string.add_join_fail));
+                    }
+                } else {
+                    Var.showToast(context, error);
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }

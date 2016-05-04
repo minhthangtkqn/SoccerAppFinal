@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +28,8 @@ import java.net.URLConnection;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button btnLogin, btnShowPassword;
+    Button btnLogin;
+    ImageView btnShowPassword;
     EditText inputPassword, inputUserName;
     TextView signUp;
     Toast successLogin, failLogin;
@@ -115,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void connectView() {
         btnLogin = (Button)findViewById(R.id.btnLogin);
-        btnShowPassword = (Button)findViewById(R.id.btnShowPassword);
+        btnShowPassword = (ImageView)findViewById(R.id.btnShowPassword);
         inputPassword = (EditText)findViewById(R.id.editPassword);
         inputUserName = (EditText)findViewById(R.id.editUserName);
         signUp = (TextView)findViewById(R.id.signUp);

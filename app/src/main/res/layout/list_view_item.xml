@@ -43,5 +43,16 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/txt_Max" />
+        android:layout_alignBottom="@+id/txt_Date" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date: ..."
+        android:id="@+id/txt_Date"
+        android:layout_below="@+id/txt_Max"
+        android:layout_toRightOf="@+id/btnJoin"
+        android:layout_toEndOf="@+id/btnJoin"
+        android:layout_marginLeft="30dp"
+        android:textSize="18dp" />
 </RelativeLayout>
