@@ -66,7 +66,8 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editUserName" />
+            android:id="@+id/editUserName"
+            android:drawableLeft="@drawable/user_icon"/>
     </TableRow>
 
     <TableRow
@@ -103,7 +104,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/editPassword"
-            android:layout_weight="0.8" />
+            android:layout_weight="0.8"
+            android:drawableLeft="@drawable/password_icon_2"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -167,8 +169,8 @@
             android:text="Don&apos;t have an account? Create one"
             android:id="@+id/signUp"
             android:textStyle="bold"
-            android:textSize="16dp"
-            android:textColor="#ffffff" />
+            android:textSize="17dp"
+            android:textColor="#000000" />
     </TableRow>
 
 </RelativeLayout>
