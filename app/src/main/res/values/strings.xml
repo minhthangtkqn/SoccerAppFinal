@@ -38,5 +38,6 @@
     <string name="add_match_fail">Create Match Failed</string>
     <string name="add_join_success">Joining Successful</string>
     <string name="add_join_fail">You have joined this match.</string>
+    <string name="date">Date</string>
 
 </resources>

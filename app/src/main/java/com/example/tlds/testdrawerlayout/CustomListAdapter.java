@@ -68,7 +68,7 @@ public class CustomListAdapter extends BaseAdapter {
         }
 
         final Match match = this.listData.get(position);
-        holder.field_name.setText("San: " + match.getField_name());
+        holder.field_name.setText(match.getField_name());
         holder.maximum_players.setText("Maximum players: " + match.getMaximum_players());
         holder.price.setText("Price: " + match.getPrice());
         holder.date.setText("Date: " + match.getDate());

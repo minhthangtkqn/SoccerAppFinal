@@ -14,30 +14,35 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
-public class Match_Register extends AppCompatActivity implements LoadJson.OnFinishLoadJSonListener {
+public class Match_Register extends AppCompatActivity implements LoadJson.OnFinishLoadJSonListener, DatePickerDialog.OnDateSetListener {
 
     private LoadJson loadJson;
 
     private Spinner spinnerFieldName;
     private EditText editPrice, editMaxPlayes;
     private TextView txtFieldName;
-    private Button btnMatchRegister;
+    private Button btnMatchRegister, btnDate;
 
     private HashMap<String, String> map = new HashMap<>();
 
     private ArrayList<String> listFieldName = new ArrayList<String>();
     private ArrayAdapter<String>adapter;
 
-    private String Username, user_id, match_id;
+    private String Username, userId, match_id;
     private String fieldID, price, maxPlayers;
+    private String Date = "";
     private Context context;
 
     private ProgressDialog progressDialog;
@@ -76,20 +81,73 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
             @Override
             public void onClick(View v) {
 
+                if( !validate())
+                    return;
+
                 fieldID = map.get(txtFieldName.getText().toString());
                 price = editPrice.getText().toString().trim();
                 maxPlayers = editMaxPlayes.getText().toString().trim();
 
                 HashMap<String, String>data = new HashMap<String, String>();
-                data.put("host_id", user_id);
+                data.put("host_id", userId);
                 data.put("field_id", fieldID);
                 data.put("price", price);
                 data.put("maximum_players", maxPlayers);
+                data.put("start_time", Date);
 
                 loadJson.sendDataToServer(Var.METHOD_ADD_MATCH, data);
                 progressDialog.show();
             }
         });
+
+        btnDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePicker();
+            }
+        });
+    }
+
+    private boolean validate() {
+        boolean value = true;
+
+        if(editPrice.getText().toString().trim().isEmpty())
+        {
+            editPrice.setError("Enter Price");
+            value = false;
+        }
+        if(editMaxPlayes.getText().toString().trim().isEmpty())
+        {
+            editMaxPlayes.setError("Enter number of Players");
+            value = false;
+        }
+        if (Date.equals(""))
+        {
+            value = false;
+            Toast.makeText(context, "Choose Date, please", Toast.LENGTH_LONG).show();
+        }
+        return value;
+    }
+
+    private void showDatePicker() {
+        Calendar now = Calendar.getInstance();
+        DatePickerDialog dpd = DatePickerDialog.newInstance(
+                this,
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH)
+        );
+
+        String title;
+        title = context.getResources().getString(R.string.date);
+        dpd.show(getFragmentManager(), title);
+    }
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        String date = dayOfMonth + "/" + monthOfYear + "/" + year;
+        Date = year + "-" + monthOfYear + "-" + dayOfMonth;
+        btnDate.setText(date);
     }
 
     private void arrayAdapterConnect(){
@@ -98,6 +156,15 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
         spinnerFieldName.setAdapter(adapter);
         spinnerFieldName.setSelection(0);
         spinnerFieldName.setOnItemSelectedListener(new MyProcessEvent());
+    }
+
+    private void openMatchsList(){
+        Intent intent = new Intent(context, Matchs_View.class);
+        Bundle bundle = new Bundle();
+        bundle.putString(Var.KEY_USER, Username);
+        bundle.putString(Var.KEY_USER_ID, userId);
+        intent.putExtra(Var.KEY_BUNDLE_USER, bundle);
+        startActivity(intent);
     }
 
     @Override
@@ -114,6 +181,7 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
 
                     new getMatchID().execute("http://minhthangtkqn-001-site1.1tempurl.com/matches.php");
 
+                    openMatchsList();
 
                     finish();
                 } else {
@@ -126,7 +194,6 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
             e.printStackTrace();
         }
     }
-
 
     class MyProcessEvent implements AdapterView.OnItemSelectedListener {
 
@@ -152,6 +219,7 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
         editMaxPlayes = (EditText)findViewById(R.id.editMaxPlayers);
 
         btnMatchRegister = (Button)findViewById(R.id.btnRegisterMatch);
+        btnDate = (Button)findViewById(R.id.btnDate);
     }
 
 
@@ -159,7 +227,6 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
         Intent destination = getIntent();
         Bundle pack = destination.getBundleExtra(Var.KEY_BUNDLE_USER);
         Username = pack.getString(Var.KEY_USER);
-//        user_id = pack.getString(Var.KEY_USER_ID);
     }
 
     class getUserIDAndFieldName extends AsyncTask<String, Integer, String> {
@@ -185,8 +252,8 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
                             JSONObject profile = array.getJSONObject(i);
 
                             if(Username.equals(profile.getString("username").toString())){
-                                user_id = profile.getString("user_id").toString();
-                                Log.e("-------------User ID: ", user_id);
+                                userId = profile.getString("userId").toString();
+                                Log.e("-------------User ID: ", userId);
                             }
                         }
                     }
@@ -224,12 +291,12 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
                     match_id = match.getString("match_id");
 
                     Log.e("++++ Match ID: ", match_id);
-                    Log.e("user_id: ", user_id);
+                    Log.e("++++ User ID: ", userId);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            new SendJoin(user_id, match_id);
+            new SendJoin(userId, match_id);
         }
     }
 
@@ -241,7 +308,7 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
             loadJsonJoin.setOnFinishLoadJSonListener(this);
 
             HashMap<String, String> dataJoin = new HashMap<>();
-            dataJoin.put("user_id", user);
+            dataJoin.put("userId", user);
             dataJoin.put("match_id", match);
 
             loadJsonJoin.sendDataToServer(Var.METHOD_JOIN_MATCH, dataJoin);

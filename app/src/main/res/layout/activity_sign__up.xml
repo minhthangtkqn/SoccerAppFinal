@@ -36,7 +36,8 @@
         android:layout_centerHorizontal="true"
         android:textSize="28dp"
         android:textStyle="bold|italic"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="50dp"
+        android:visibility="invisible" />
 
     <TableRow
         android:layout_width="match_parent"
@@ -56,9 +57,11 @@
 
         <EditText
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:id="@+id/editUser"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_style"
+            android:layout_marginRight="25dp" />
     </TableRow>
 
     <TableRow
@@ -79,15 +82,17 @@
 
         <EditText
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:id="@+id/editPass"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_style" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/showPass"
-            android:background="@drawable/eye_icon" />
+            android:background="@drawable/eye_icon"
+            android:layout_gravity="center_vertical" />
     </TableRow>
 
     <TableRow
@@ -108,15 +113,36 @@
 
         <EditText
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:id="@+id/editCfpass"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_style" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/showCfPass"
-            android:background="@drawable/eye_icon" />
+            android:background="@drawable/eye_icon"
+            android:layout_gravity="center_vertical" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tableRow15"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:id="@+id/tableRow14">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="REGISTER"
+            android:id="@+id/btnRegister"
+            android:textSize="25dp"
+            android:background="@drawable/button_shape"
+            android:textColor="#ffffff"
+            android:layout_marginTop="50dp" />
     </TableRow>
 
     <TableRow
@@ -124,15 +150,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tableRow13"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp">
+        android:id="@+id/tableRow15">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="REGISTER"
-            android:id="@+id/btnRegister"
-            android:textStyle="bold|italic"
-            android:textSize="25dp"
-            android:background="#3691e6" />
     </TableRow>
+
+
 </RelativeLayout>

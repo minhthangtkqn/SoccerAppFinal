@@ -27,4 +27,5 @@ dependencies {
     compile files('libs/android-async-http-1.4.9.jar')
     compile files('libs/http-core-4.1.jar')
     compile files('libs/httpclient-4.3.4.jar')
+    compile 'com.wdullaer:materialdatetimepicker:2.3.0'
 }
