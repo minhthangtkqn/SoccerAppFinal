@@ -64,7 +64,7 @@ public class LoadJson {
 
     public static user_frofiles jsonToUser(JSONObject jsonObject) {
         try {
-            String username = jsonObject.getString(Var.KEY_USER);
+            String username = jsonObject.getString(Var.KEY_USERNAME);
             String password = jsonObject.getString(Var.KEY_PASS);
             String email = jsonObject.getString(Var.KEY_EMAIL);
             String phone_number = jsonObject.getString(Var.KEY_PHONE);

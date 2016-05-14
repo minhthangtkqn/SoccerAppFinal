@@ -161,7 +161,7 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
     private void openMatchsList(){
         Intent intent = new Intent(context, Matchs_View.class);
         Bundle bundle = new Bundle();
-        bundle.putString(Var.KEY_USER, Username);
+        bundle.putString(Var.KEY_USERNAME, Username);
         bundle.putString(Var.KEY_USER_ID, userId);
         intent.putExtra(Var.KEY_BUNDLE_USER, bundle);
         startActivity(intent);
@@ -226,7 +226,7 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
     private void getUserFromCallerActivity() {
         Intent destination = getIntent();
         Bundle pack = destination.getBundleExtra(Var.KEY_BUNDLE_USER);
-        Username = pack.getString(Var.KEY_USER);
+        Username = pack.getString(Var.KEY_USERNAME);
     }
 
     class getUserIDAndFieldName extends AsyncTask<String, Integer, String> {

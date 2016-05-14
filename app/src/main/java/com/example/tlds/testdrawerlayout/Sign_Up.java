@@ -3,6 +3,7 @@ package com.example.tlds.testdrawerlayout;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,7 +22,7 @@ import java.util.HashMap;
 public class Sign_Up extends AppCompatActivity implements LoadJson.OnFinishLoadJSonListener {
 
     private Button btnRegister;
-    private EditText editUser, editEmail, editPass, editCFPass;
+    private EditText editUser, editPass, editCFPass, editEmail, editPhoneNumber;
     private Context context;
     private LoadJson loadJson;
     private ProgressDialog progressDialog;
@@ -45,8 +46,6 @@ public class Sign_Up extends AppCompatActivity implements LoadJson.OnFinishLoadJ
         loadJson.setOnFinishLoadJSonListener(this);
         progressDialog = new ProgressDialog(context);
         progressDialog.setMessage(context.getResources().getString(R.string.wait));
-
-
     }
 
     private void clickEvents() {
@@ -86,6 +85,8 @@ public class Sign_Up extends AppCompatActivity implements LoadJson.OnFinishLoadJ
         editUser = (EditText)findViewById(R.id.editUser);
         editCFPass = (EditText)findViewById(R.id.editCfpass);
         editPass = (EditText)findViewById(R.id.editPass);
+        editEmail = (EditText)findViewById(R.id.editEmail);
+        editPhoneNumber = (EditText)findViewById(R.id.editPhoneNumber);
 
         editPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         editCFPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
@@ -110,6 +111,9 @@ public class Sign_Up extends AppCompatActivity implements LoadJson.OnFinishLoadJ
         String nick = editUser.getText().toString().trim();
         String pass = editPass.getText().toString().trim();
         String repass = editCFPass.getText().toString().trim();
+        String email = editEmail.getText().toString().trim();
+        String phoneNumber = editPhoneNumber.getText().toString().trim();
+
 
         // not enter nick name
         if (nick.length() == 0) {
@@ -138,9 +142,23 @@ public class Sign_Up extends AppCompatActivity implements LoadJson.OnFinishLoadJ
             return;
         }
 
+        if(email.isEmpty()){
+            editEmail.requestFocus();
+            Var.showToast(context, context.getResources().getString(R.string.enter_email));
+            return;
+        }
+
+        if(phoneNumber.isEmpty()){
+            editEmail.requestFocus();
+            Var.showToast(context, context.getResources().getString(R.string.enter_phone_number));
+            return;
+        }
+
         HashMap<String, String> map = new HashMap<>();
-        map.put(Var.KEY_USER, nick);
+        map.put(Var.KEY_USERNAME, nick);
         map.put(Var.KEY_PASS, pass);
+        map.put(Var.KEY_EMAIL, email);
+        map.put(Var.KEY_PHONE, phoneNumber);
 
         loadJson.sendDataToServer(Var.METHOD_REGISTER, map);
         progressDialog.show();
@@ -163,6 +181,7 @@ public class Sign_Up extends AppCompatActivity implements LoadJson.OnFinishLoadJ
                 JSONObject jsonObject = new JSONObject(json);
                 if (jsonObject.getBoolean(Var.KEY_REGISTER)) {
                     Var.showToast(context, context.getResources().getString(R.string.register_success));
+                    openLoginActivity();
                     finish();
                 } else {
                     Var.showToast(context, context.getResources().getString(R.string.register_fail));
@@ -173,5 +192,16 @@ public class Sign_Up extends AppCompatActivity implements LoadJson.OnFinishLoadJ
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private void openLoginActivity() {
+        Intent login = new Intent(Sign_Up.this, LoginActivity.class);
+        Bundle userPack = new Bundle();
+
+        userPack.putString(Var.KEY_USERNAME, editUser.getText().toString().trim());
+        userPack.putString(Var.KEY_PASS, editPass.getText().toString().trim());
+        login.putExtra(Var.KEY_BUNDLE_USER, userPack);
+
+        startActivity(login);
     }
 }

@@ -16,12 +16,13 @@ public class Var {
 
     public static final String KEY_BUNDLE_USER = "user package";
 
-    public static final String KEY_USER = "username";
+    public static final String KEY_USERNAME = "username";
     public static final String KEY_USER_ID = "user_id";
     public static final String KEY_PASS = "pass";
 
-    public static final String KEY_EMAIL = "id";
-    public static final String KEY_PHONE = "phone";
+
+    public static final String KEY_EMAIL = "email";
+    public static final String KEY_PHONE = "phone_number";
 
     public static final String KEY_REMEMBER = "remember";
 
@@ -34,6 +35,15 @@ public class Var {
     public static final int METHOD_GET_MATCH = 3;
     public static final int METHOD_ADD_MATCH = 4;
     public static final int METHOD_JOIN_MATCH = 5;
+    public static final int METHOD_UPDATE_INFO = 6;
+
+    public static final String KEY_MATCH_ID = "match_id";
+    public static final String KEY_DATE = "date";
+    public static final String KEY_FIELD_NAME = "fieldName";
+    public static final String KEY_MAX_PLAYERS = "maxPlayers";
+    public static final String KEY_NUM_PLAYERS = "numberPlayers";
+    public static final String KEY_PRICE = "price";
+
 
     public static void showToast(Context context, String sms) {
         Toast.makeText(context, sms, Toast.LENGTH_SHORT).show();

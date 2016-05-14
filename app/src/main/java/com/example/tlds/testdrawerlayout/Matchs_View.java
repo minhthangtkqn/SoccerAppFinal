@@ -26,6 +26,8 @@ public class Matchs_View extends AppCompatActivity implements FragmentDrawer.Fra
     private FragmentDrawer drawerFragment;
     private Context context;
 
+    private CustomListAdapter customListAdapter;
+
     private String Username, user_id;
     private ListView listView;
     private List<Match> matches = new ArrayList<Match>();
@@ -39,10 +41,7 @@ public class Matchs_View extends AppCompatActivity implements FragmentDrawer.Fra
         context = this;
         connectToView();
 
-        Intent caller = getIntent();
-        Bundle pack = caller.getBundleExtra(Var.KEY_BUNDLE_USER);
-        Username = pack.getString(Var.KEY_USER);
-        user_id = pack.getString(Var.KEY_USER_ID);
+        getUserFromCaller();
 
         //show matchs list
         runOnUiThread(new Runnable() {
@@ -67,6 +66,13 @@ public class Matchs_View extends AppCompatActivity implements FragmentDrawer.Fra
         ClickEvents();
     }
 
+    private void getUserFromCaller(){
+        Intent caller = getIntent();
+        Bundle pack = caller.getBundleExtra(Var.KEY_BUNDLE_USER);
+        Username = pack.getString(Var.KEY_USERNAME);
+        user_id = pack.getString(Var.KEY_USER_ID);
+    }
+
     private void ClickEvents() {
 
         btnCreateMatch.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +80,7 @@ public class Matchs_View extends AppCompatActivity implements FragmentDrawer.Fra
             public void onClick(View v) {
                 Intent intent = new Intent(context, Match_Register.class);
                 Bundle bundle = new Bundle();
-                bundle.putString(Var.KEY_USER, Username);
+                bundle.putString(Var.KEY_USERNAME, Username);
                 intent.putExtra(Var.KEY_BUNDLE_USER, bundle);
                 startActivity(intent);
             }
@@ -84,6 +90,16 @@ public class Matchs_View extends AppCompatActivity implements FragmentDrawer.Fra
     private void connectToView() {
         listView = (ListView)findViewById(R.id.listMatch);
         btnCreateMatch = (Button)findViewById(R.id.btnCreateMatch);
+
+        customListAdapter = new CustomListAdapter(Matchs_View.this, matches);
+        listView.setAdapter(customListAdapter);
+
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Log.e("Item click", String.valueOf(position));
+//            }
+//        });
     }
 
     @Override
@@ -110,7 +126,7 @@ public class Matchs_View extends AppCompatActivity implements FragmentDrawer.Fra
     public void openProfile() {
         Intent intent = new Intent(context, MainActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putString(Var.KEY_USER, Username);
+        bundle.putString(Var.KEY_USERNAME, Username);
         intent.putExtra(Var.KEY_BUNDLE_USER, bundle);
         startActivity(intent);
     }
@@ -118,7 +134,7 @@ public class Matchs_View extends AppCompatActivity implements FragmentDrawer.Fra
     public void openMatchsList(){
         Intent intent = new Intent(context, Matchs_View.class);
         Bundle bundle = new Bundle();
-        bundle.putString(Var.KEY_USER, Username);
+        bundle.putString(Var.KEY_USERNAME, Username);
         intent.putExtra(Var.KEY_BUNDLE_USER, bundle);
         startActivity(intent);
     }
@@ -149,7 +165,6 @@ public class Matchs_View extends AppCompatActivity implements FragmentDrawer.Fra
         @Override
         protected String doInBackground(String... params) {
             return LoginActivity.readContentFromURL(params[0]);
-
         }
 
         @Override
@@ -167,11 +182,21 @@ public class Matchs_View extends AppCompatActivity implements FragmentDrawer.Fra
                             match.getString("number_players").toString(),
                             user_id);
                     matches.add(tran);
-                    listView.setAdapter(new CustomListAdapter(Matchs_View.this, matches));
+                    customListAdapter.notifyDataSetChanged();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
+//            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                    String ID_MATCH = "";
+//                    ID_MATCH =  matches.get(position).getMatch_id();
+//                    Toast.makeText(context, ID_MATCH, Toast.LENGTH_LONG).show();
+//                    Log.e("Match ID:  ", ID_MATCH);
+//                }
+//            });
         }
     }
 }

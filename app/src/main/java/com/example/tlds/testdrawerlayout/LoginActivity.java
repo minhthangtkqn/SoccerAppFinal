@@ -74,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
         ClickEvents();
     }
 
+
     //Prevent back button form go into app
     @Override
     public void onBackPressed() {
@@ -82,8 +83,9 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     private void ClickEvents(){
-        //Nhấn giữ để hiển thị password
+        //Nhấn để hiển thị password
         btnShowPassword.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -207,11 +209,14 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         private void openProfileActivity(){
+
             Intent matches = new Intent(LoginActivity.this, MainActivity.class);
             Bundle userPack = new Bundle();
-            userPack.putString(Var.KEY_USER, inputUserName.getText().toString());
+
+            userPack.putString(Var.KEY_USERNAME, inputUserName.getText().toString());
             userPack.putString(Var.KEY_USER_ID, userID);
             matches.putExtra(Var.KEY_BUNDLE_USER, userPack);
+
             startActivity(matches);
         }
 
@@ -260,7 +265,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         else
         {
-            editor.putString(Var.KEY_USER, UnameValue);
+            editor.putString(Var.KEY_USERNAME, UnameValue);
             editor.putString(Var.KEY_PASS, PasswordValue);
             editor.putBoolean(Var.KEY_REMEMBER, bChk);
         }
@@ -273,7 +278,7 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences("data", Context.MODE_PRIVATE);
 
         // Get Username and Password
-        UnameValue = settings.getString(Var.KEY_USER, DefaultUnameValue);
+        UnameValue = settings.getString(Var.KEY_USERNAME, DefaultUnameValue);
         PasswordValue = settings.getString(Var.KEY_PASS, DefaultPasswordValue);
         inputUserName.setText(UnameValue);
         inputPassword.setText(PasswordValue);

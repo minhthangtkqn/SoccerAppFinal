@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -19,17 +19,18 @@ import java.util.List;
 /**
  * Created by PC on 4/27/2016.
  */
-public class CustomListAdapter extends BaseAdapter {
+public class CustomListAdapter extends ArrayAdapter {
     private List<Match> listData;
     private LayoutInflater layoutInflater;
     private Context context;
 
     private ProgressDialog progressDialog;
-
     public CustomListAdapter(Context aContext, List<Match> listData) {
+        super(aContext,R.layout.list_view_item);
         this.context = aContext;
         this.listData = listData;
         layoutInflater = LayoutInflater.from(aContext);
+
     }
 
     @Override
@@ -48,6 +49,7 @@ public class CustomListAdapter extends BaseAdapter {
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
+
         progressDialog = new ProgressDialog(context);
         progressDialog.setMessage(context.getResources().getString(R.string.wait));
 
@@ -77,23 +79,59 @@ public class CustomListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Log.e("Join: ", listData.get(position).getField_name() + "----user_id: " + match.getUser_id());
-
                 new SendJoin(match.getUser_id(), match.getMatch_id());
             }
         });
 
+//        View.OnClickListener myClick = new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                openMatchInfo(match.getUser_id(),
+//                        match.getMatch_id(),
+//                        match.getDate(),
+//                        match.getField_name(),
+//                        match.getMaximum_players(),
+//                        match.getNumber_players(),
+//                        match.getPrice());
+//                v.callOnClick();
+//            }
+//        };
+//
+//        convertView.setOnClickListener(myClick);
+
         return convertView;
     }
 
-    // Tìm ID của Image ứng với tên của ảnh (Trong thư mục mipmap).
-    public int getMipmapResIdByName(String resName)  {
-        String pkgName = context.getPackageName();
+//    public void openMatchInfo(String userID,
+//                              String matchID,
+//                              String date,
+//                              String fieldName,
+//                              String maxPlayers,
+//                              String numberPlayers,
+//                              String price){
+//        Intent intent = new Intent(context, Matchs_View.class);
+//        Bundle bundle = new Bundle();
+//        bundle.putString(Var.KEY_USER_ID, userID);
+//        bundle.putString(Var.KEY_MATCH_ID, matchID);
+//        bundle.putString(Var.KEY_DATE, date);
+//        bundle.putString(Var.KEY_FIELD_NAME, fieldName);
+//        bundle.putString(Var.KEY_MAX_PLAYERS, maxPlayers);
+//        bundle.putString(Var.KEY_NUM_PLAYERS, numberPlayers);
+//        bundle.putString(Var.KEY_PRICE, price);
+//
+//        intent.putExtra(Var.KEY_BUNDLE_USER, bundle);
+//        context.startActivity(intent);
+//    }
 
-        // Trả về 0 nếu không tìm thấy.
-        int resID = context.getResources().getIdentifier(resName , "mipmap", pkgName);
-        Log.i("CustomListView", "Res Name: " + resName + "==> Res ID = " + resID);
-        return resID;
-    }
+    // Tìm ID của Image ứng với tên của ảnh (Trong thư mục mipmap).
+//    public int getMipmapResIdByName(String resName)  {
+//        String pkgName = context.getPackageName();
+//
+//        // Trả về 0 nếu không tìm thấy.
+//        int resID = context.getResources().getIdentifier(resName , "mipmap", pkgName);
+//        Log.i("CustomListView", "Res Name: " + resName + "==> Res ID = " + resID);
+//        return resID;
+//    }
 
     static class ViewHolder {
         TextView field_name;

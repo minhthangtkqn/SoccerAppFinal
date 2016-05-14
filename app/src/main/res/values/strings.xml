@@ -26,18 +26,28 @@
     <string name="login_fail">Login failed</string>
 
     <string name="register">Register</string>
+
     <string name="enter_nick">Please enter Username</string>
     <string name="enter_pass">Please enter Password</string>
     <string name="enter_repass">Please enter Password Confirm</string>
     <string name="pass_not_match">Password does not match</string>
+    <string name="enter_email">Please enter Email Address</string>
+    <string name="enter_phone_number">Please enter Phone number</string>
+
+
     <string name="wait">Wait for a second!</string>
+
     <string name="register_success">Register Successful</string>
     <string name="register_fail">Register failed</string>
+
     <string name="login">Login</string>
+
     <string name="add_match_success">Create Match Successful</string>
     <string name="add_match_fail">Create Match Failed</string>
+
     <string name="add_join_success">Joining Successful</string>
     <string name="add_join_fail">You have joined this match.</string>
+
     <string name="date">Date</string>
 
 </resources>

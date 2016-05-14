@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     private void getUserFromCallerActivity() {
         Intent destination = getIntent();
         Bundle pack = destination.getBundleExtra(Var.KEY_BUNDLE_USER);
-        Username = pack.getString(Var.KEY_USER);
+        Username = pack.getString(Var.KEY_USERNAME);
         userID = pack.getString(Var.KEY_USER_ID);
     }
 
@@ -79,15 +79,30 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                openEditActivity();
+            }
 
+            private void openEditActivity() {
+                Intent edit = new Intent(MainActivity.this, EditActivity.class);
+                Bundle infomation = new Bundle();
+
+                infomation.putString(Var.KEY_USERNAME, txtUsername.getText().toString());
+                infomation.putString(Var.KEY_PHONE, txtPhone.getText().toString());
+                infomation.putString(Var.KEY_EMAIL, txtEmail.getText().toString());
+
+                edit.putExtra(Var.KEY_BUNDLE_USER, infomation);
+
+                startActivity(edit);
             }
         });
     }
 
+
+
     public void openProfile() {
         Intent intent = new Intent(context, MainActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putString(Var.KEY_USER, txtUsername.getText().toString());
+        bundle.putString(Var.KEY_USERNAME, txtUsername.getText().toString());
         bundle.putString(Var.KEY_USER_ID, userID);
         intent.putExtra(Var.KEY_BUNDLE_USER, bundle);
         startActivity(intent);
@@ -96,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     public void openMatchsList(){
         Intent intent = new Intent(context, Matchs_View.class);
         Bundle bundle = new Bundle();
-        bundle.putString(Var.KEY_USER, txtUsername.getText().toString());
+        bundle.putString(Var.KEY_USERNAME, txtUsername.getText().toString());
         bundle.putString(Var.KEY_USER_ID, userID);
         intent.putExtra(Var.KEY_BUNDLE_USER, bundle);
         startActivity(intent);
