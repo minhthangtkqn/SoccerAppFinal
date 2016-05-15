@@ -36,17 +36,47 @@ public class Sign_Up extends AppCompatActivity implements LoadJson.OnFinishLoadJ
 
         context = this;
 
-        setupToolbar();
-
-        connectView();
-
-        clickEvents();
-
         loadJson = new LoadJson();
         loadJson.setOnFinishLoadJSonListener(this);
         progressDialog = new ProgressDialog(context);
         progressDialog.setMessage(context.getResources().getString(R.string.wait));
+
+        setupToolbar();
+
+        connectToView();
+
+        clickEvents();
+
     }
+
+
+    private void setupToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setTitle(R.string.register);
+            }
+        }
+    }
+
+
+    private void connectToView() {
+        editUser = (EditText)findViewById(R.id.editUser);
+        editCFPass = (EditText)findViewById(R.id.editCfpass);
+        editPass = (EditText)findViewById(R.id.editPass);
+        editEmail = (EditText)findViewById(R.id.editEmail);
+        editPhoneNumber = (EditText)findViewById(R.id.editPhoneNumber);
+
+        editPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        editCFPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
+        showPass = (ImageView)findViewById(R.id.showPass);
+        showCFPass = (ImageView)findViewById(R.id.showCfPass);
+
+        btnRegister = (Button)findViewById(R.id.btnRegister);
+    }
+
 
     private void clickEvents() {
         showPass.setOnTouchListener(new View.OnTouchListener() {
@@ -81,31 +111,6 @@ public class Sign_Up extends AppCompatActivity implements LoadJson.OnFinishLoadJ
         });
     }
 
-    private void connectView() {
-        editUser = (EditText)findViewById(R.id.editUser);
-        editCFPass = (EditText)findViewById(R.id.editCfpass);
-        editPass = (EditText)findViewById(R.id.editPass);
-        editEmail = (EditText)findViewById(R.id.editEmail);
-        editPhoneNumber = (EditText)findViewById(R.id.editPhoneNumber);
-
-        editPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        editCFPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-
-        showPass = (ImageView)findViewById(R.id.showPass);
-        showCFPass = (ImageView)findViewById(R.id.showCfPass);
-
-        btnRegister = (Button)findViewById(R.id.btnRegister);
-    }
-
-    private void setupToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().setTitle(R.string.register);
-            }
-        }
-    }
 
     private void register() {
         String nick = editUser.getText().toString().trim();
@@ -164,12 +169,13 @@ public class Sign_Up extends AppCompatActivity implements LoadJson.OnFinishLoadJ
         progressDialog.show();
     }
 
-    private void reset() {
-        editUser.setText("");
-        editPass.setText("");
-        editCFPass.setText("");
-        editUser.requestFocus();
-    }
+
+//    private void reset() {
+//        editUser.setText("");
+//        editPass.setText("");
+//        editCFPass.setText("");
+//        editUser.requestFocus();
+//    }
 
     @Override
     public void finishLoadJSon(String error, String json) {
@@ -196,11 +202,11 @@ public class Sign_Up extends AppCompatActivity implements LoadJson.OnFinishLoadJ
 
     private void openLoginActivity() {
         Intent login = new Intent(Sign_Up.this, LoginActivity.class);
-        Bundle userPack = new Bundle();
-
-        userPack.putString(Var.KEY_USERNAME, editUser.getText().toString().trim());
-        userPack.putString(Var.KEY_PASS, editPass.getText().toString().trim());
-        login.putExtra(Var.KEY_BUNDLE_USER, userPack);
+//        Bundle userPack = new Bundle();
+//
+//        userPack.putString(Var.KEY_USERNAME, editUser.getText().toString().trim());
+//        userPack.putString(Var.KEY_PASS, editPass.getText().toString().trim());
+//        login.putExtra(Var.KEY_BUNDLE_USER, userPack);
 
         startActivity(login);
     }

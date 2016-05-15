@@ -32,7 +32,8 @@
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="30dp"
-            android:background="@drawable/edit_text_style" />
+            android:background="@drawable/edit_text_style"
+            android:paddingLeft="10dp" />
     </TableRow>
 
     <TableRow
@@ -57,7 +58,8 @@
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="30dp"
-            android:background="@drawable/edit_text_style" />
+            android:background="@drawable/edit_text_style"
+            android:paddingLeft="10dp" />
     </TableRow>
 
     <Button

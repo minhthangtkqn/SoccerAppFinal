@@ -34,6 +34,9 @@
     <string name="enter_email">Please enter Email Address</string>
     <string name="enter_phone_number">Please enter Phone number</string>
 
+    <string name="update_success">Update information successful</string>
+    <string name="update_fail">Update information failed</string>
+
 
     <string name="wait">Wait for a second!</string>
 

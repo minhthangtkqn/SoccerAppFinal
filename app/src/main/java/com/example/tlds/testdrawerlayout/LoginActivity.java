@@ -172,7 +172,6 @@ public class LoginActivity extends AppCompatActivity {
             return readContentFromURL(params[0]);
         }
 
-
         @Override
         protected void onPostExecute(String s) {
             try {

@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 infomation.putString(Var.KEY_USERNAME, txtUsername.getText().toString());
                 infomation.putString(Var.KEY_PHONE, txtPhone.getText().toString());
                 infomation.putString(Var.KEY_EMAIL, txtEmail.getText().toString());
+                infomation.putString(Var.KEY_USER_ID, userID);
 
                 edit.putExtra(Var.KEY_BUNDLE_USER, infomation);
 
@@ -102,18 +103,22 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     public void openProfile() {
         Intent intent = new Intent(context, MainActivity.class);
         Bundle bundle = new Bundle();
+
         bundle.putString(Var.KEY_USERNAME, txtUsername.getText().toString());
         bundle.putString(Var.KEY_USER_ID, userID);
         intent.putExtra(Var.KEY_BUNDLE_USER, bundle);
+
         startActivity(intent);
     }
 
     public void openMatchsList(){
         Intent intent = new Intent(context, Matchs_View.class);
         Bundle bundle = new Bundle();
+
         bundle.putString(Var.KEY_USERNAME, txtUsername.getText().toString());
         bundle.putString(Var.KEY_USER_ID, userID);
         intent.putExtra(Var.KEY_BUNDLE_USER, bundle);
+
         startActivity(intent);
     }
 
