@@ -83,55 +83,10 @@ public class CustomListAdapter extends ArrayAdapter {
             }
         });
 
-//        View.OnClickListener myClick = new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                openMatchInfo(match.getUser_id(),
-//                        match.getMatch_id(),
-//                        match.getDate(),
-//                        match.getField_name(),
-//                        match.getMaximum_players(),
-//                        match.getNumber_players(),
-//                        match.getPrice());
-//                v.callOnClick();
-//            }
-//        };
-//
-//        convertView.setOnClickListener(myClick);
 
         return convertView;
     }
 
-//    public void openMatchInfo(String userID,
-//                              String matchID,
-//                              String date,
-//                              String fieldName,
-//                              String maxPlayers,
-//                              String numberPlayers,
-//                              String price){
-//        Intent intent = new Intent(context, Matchs_View.class);
-//        Bundle bundle = new Bundle();
-//        bundle.putString(Var.KEY_USER_ID, userID);
-//        bundle.putString(Var.KEY_MATCH_ID, matchID);
-//        bundle.putString(Var.KEY_DATE, date);
-//        bundle.putString(Var.KEY_FIELD_NAME, fieldName);
-//        bundle.putString(Var.KEY_MAX_PLAYERS, maxPlayers);
-//        bundle.putString(Var.KEY_NUM_PLAYERS, numberPlayers);
-//        bundle.putString(Var.KEY_PRICE, price);
-//
-//        intent.putExtra(Var.KEY_BUNDLE_USER, bundle);
-//        context.startActivity(intent);
-//    }
-
-    // Tìm ID của Image ứng với tên của ảnh (Trong thư mục mipmap).
-//    public int getMipmapResIdByName(String resName)  {
-//        String pkgName = context.getPackageName();
-//
-//        // Trả về 0 nếu không tìm thấy.
-//        int resID = context.getResources().getIdentifier(resName , "mipmap", pkgName);
-//        Log.i("CustomListView", "Res Name: " + resName + "==> Res ID = " + resID);
-//        return resID;
-//    }
 
     static class ViewHolder {
         TextView field_name;

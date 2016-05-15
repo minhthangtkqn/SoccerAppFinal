@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/listMatch"
-            android:layout_weight="19"
+            android:layout_weight="21"
             android:clickable="true" />
 
         <Button
@@ -37,8 +37,7 @@
             android:textStyle="bold|italic"
             android:layout_gravity="center_horizontal"
             android:layout_below="@+id/listMatch"
-            android:layout_weight="1"
-            android:layout_marginBottom="10dp" />
+            android:layout_weight="1" />
 
         <FrameLayout
             android:id="@+id/container_body"

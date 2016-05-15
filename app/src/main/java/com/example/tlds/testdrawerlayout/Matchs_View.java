@@ -80,8 +80,11 @@ public class Matchs_View extends AppCompatActivity implements FragmentDrawer.Fra
             public void onClick(View v) {
                 Intent intent = new Intent(context, Match_Register.class);
                 Bundle bundle = new Bundle();
+
                 bundle.putString(Var.KEY_USERNAME, Username);
+                bundle.putString(Var.KEY_USER_ID, user_id);
                 intent.putExtra(Var.KEY_BUNDLE_USER, bundle);
+
                 startActivity(intent);
             }
         });
@@ -94,12 +97,6 @@ public class Matchs_View extends AppCompatActivity implements FragmentDrawer.Fra
         customListAdapter = new CustomListAdapter(Matchs_View.this, matches);
         listView.setAdapter(customListAdapter);
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Log.e("Item click", String.valueOf(position));
-//            }
-//        });
     }
 
     @Override
@@ -126,16 +123,22 @@ public class Matchs_View extends AppCompatActivity implements FragmentDrawer.Fra
     public void openProfile() {
         Intent intent = new Intent(context, MainActivity.class);
         Bundle bundle = new Bundle();
+
         bundle.putString(Var.KEY_USERNAME, Username);
+        bundle.putString(Var.KEY_USER_ID, user_id);
         intent.putExtra(Var.KEY_BUNDLE_USER, bundle);
+
         startActivity(intent);
     }
 
     public void openMatchsList(){
         Intent intent = new Intent(context, Matchs_View.class);
         Bundle bundle = new Bundle();
+
         bundle.putString(Var.KEY_USERNAME, Username);
+        bundle.putString(Var.KEY_USER_ID, user_id);
         intent.putExtra(Var.KEY_BUNDLE_USER, bundle);
+
         startActivity(intent);
     }
 
@@ -188,15 +191,6 @@ public class Matchs_View extends AppCompatActivity implements FragmentDrawer.Fra
                 e.printStackTrace();
             }
 
-//            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                @Override
-//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                    String ID_MATCH = "";
-//                    ID_MATCH =  matches.get(position).getMatch_id();
-//                    Toast.makeText(context, ID_MATCH, Toast.LENGTH_LONG).show();
-//                    Log.e("Match ID:  ", ID_MATCH);
-//                }
-//            });
         }
     }
 }

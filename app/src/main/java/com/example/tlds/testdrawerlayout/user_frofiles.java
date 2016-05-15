@@ -44,20 +44,5 @@ public class user_frofiles {
         return this;
     }
 
-//    public String toJSON() {
-//        JSONObject jsonObject = new JSONObject();
-//        try {
-//            jsonObject.put(Var.KEY_ID, getId());
-//            jsonObject.put(Var.KEY_NAME, getName());
-//            jsonObject.put(Var.KEY_PHONE, getPhone());
-//            jsonObject.put(Var.KEY_BEGIN_DATE, getBeginDate());
-//            jsonObject.put(Var.KEY_END_DATE, getEndDate());
-//
-//            return jsonObject.toString();
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//            return "";
-//        }
-//    }
 
 }

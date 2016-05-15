@@ -170,13 +170,6 @@ public class Sign_Up extends AppCompatActivity implements LoadJson.OnFinishLoadJ
     }
 
 
-//    private void reset() {
-//        editUser.setText("");
-//        editPass.setText("");
-//        editCFPass.setText("");
-//        editUser.requestFocus();
-//    }
-
     @Override
     public void finishLoadJSon(String error, String json) {
         if (progressDialog.isShowing()) {
@@ -202,11 +195,6 @@ public class Sign_Up extends AppCompatActivity implements LoadJson.OnFinishLoadJ
 
     private void openLoginActivity() {
         Intent login = new Intent(Sign_Up.this, LoginActivity.class);
-//        Bundle userPack = new Bundle();
-//
-//        userPack.putString(Var.KEY_USERNAME, editUser.getText().toString().trim());
-//        userPack.putString(Var.KEY_PASS, editPass.getText().toString().trim());
-//        login.putExtra(Var.KEY_BUNDLE_USER, userPack);
 
         startActivity(login);
     }

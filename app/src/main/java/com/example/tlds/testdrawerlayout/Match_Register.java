@@ -68,7 +68,7 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                new getUserIDAndFieldName().execute("http://minhthangtkqn-001-site1.1tempurl.com/JSON_user_profiles.php");
+//                new getUserIDAndFieldName().execute("http://minhthangtkqn-001-site1.1tempurl.com/JSON_user_profiles.php");
                 new getUserIDAndFieldName().execute("http://minhthangtkqn-001-site1.1tempurl.com/JSON_fields.php");
             }
         });
@@ -94,6 +94,12 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
                 data.put("price", price);
                 data.put("maximum_players", maxPlayers);
                 data.put("start_time", Date);
+
+                Log.e("Host ID: ", userId);
+                Log.e("field_id: ", fieldID);
+                Log.e("price: ", price);
+                Log.e("max players: ", maxPlayers);
+                Log.e("start time: ", Date);
 
                 loadJson.sendDataToServer(Var.METHOD_ADD_MATCH, data);
                 progressDialog.show();
@@ -227,6 +233,7 @@ public class Match_Register extends AppCompatActivity implements LoadJson.OnFini
         Intent destination = getIntent();
         Bundle pack = destination.getBundleExtra(Var.KEY_BUNDLE_USER);
         Username = pack.getString(Var.KEY_USERNAME);
+        userId = pack.getString(Var.KEY_USER_ID);
     }
 
     class getUserIDAndFieldName extends AsyncTask<String, Integer, String> {
